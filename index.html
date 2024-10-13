@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Bán Kính</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+    <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+/* Header Styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cart-link {
+    cursor: pointer;
+    color: white;
+}
+
+#cart-items {
+    margin-bottom: 15px;
+}
+
+#checkout-btn {
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#checkout-btn:hover {
+    background-color: #444;
+}
+
+.close-cart-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-cart-btn:hover {
+    color: black;
+}
+
+#cart-modal .modal-content {
+    width: 50%;
+}
+
+
+/* Container for logo and title */
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo Styles */
+.logo {
+    height: 50px; /* Adjust height to fit the header */
+    margin-right: 20px;
+}
+
+/* Title Styles */
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Navigation styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    padding: 10px 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+        section {
+            /* padding: 20px; */
+        }
+
+        /* Flexbox for main content */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* Service Section Styles */
+.service-section {
+    background-color: #f4f4f4;
+    padding: 20px 0;
+}
+
+.service-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-item {
+    text-align: center;
+    width: 22%;
+}
+
+.service-item img {
+    width: 60px; /* Adjust the size of the icons */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.service-item h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.service-item p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+
+        /* Slider Styles */
+/* Slider Styles */
+.image-slider {
+    margin: 0 auto;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden;
+    position: relative;
+}
+.image-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+        /* Category List Styles */
+/* Category List Styles */
+.category-list {
+    width: 25%; /* Thu nhỏ lại một chút */
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 0px; /* Đẩy qua bên trái */
+    margin-top: 100px;
+    margin-right: 12px;
+}
+
+        .category-list h2 {
+            text-align: center;
+        }
+        .category-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .category-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+            text-align: center;
+        }
+        .category-list li:hover {
+            background-color: #f4f4f4;
+        }
+
+        /* Search Bar Styles */
+        .search-bar {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .search-bar input {
+            width: 80%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+
+        .product-list h2 {
+            text-align: center;
+            margin-top: -10px;
+            margin-bottom: 50px;
+        }
+
+        .product-list{
+            margin-top: 30px;
+        }
+
+        /* Grid layout for products */
+        .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px; /* Giảm khoảng cách giữa các sản phẩm */
+}
+
+/* Styles for the product list */
+.product-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.product-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-item h3 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #333;
+}
+
+.product-item p {
+    color: #666;
+    margin-bottom: 15px;
+    font-size: 0.95rem;
+}
+
+.product-item p:last-of-type {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #000;
+}
+
+.product-item button {
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.product-item button:hover {
+    background-color: #555;
+}
+
+
+
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Modal (Form liên hệ) Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .modal h2 {
+            text-align: center;
+        }
+        .modal form {
+            display: flex;
+            flex-direction: column;
+        }
+        .modal form label {
+            margin-bottom: 5px;
+        }
+        .modal form input,
+        .modal form textarea {
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .modal form button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .modal form button:hover {
+            background-color: #444;
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            .category-list, .product-list {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Product Detail Modal Styles */
+/* Nền modal */
+/* Nền modal */
+#product-detail-modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Nền mờ hơn */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Hiệu ứng chuyển tiếp */
+}
+
+/* Nội dung modal */
+.modal-content {
+    background-color: white;
+    margin: 10% auto; /* Tùy chỉnh khoảng cách từ trên */
+    padding: 20px;
+    border-radius: 12px; /* Bo góc mạnh hơn */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* Đổ bóng mạnh hơn */
+    width: 90%; /* Chiều rộng modal */
+    max-width: 600px; /* Giới hạn chiều rộng tối đa */
+    transition: transform 0.3s ease; /* Hiệu ứng chuyển tiếp cho nội dung */
+    transform: scale(0.9); /* Bắt đầu ở kích thước nhỏ hơn */
+}
+
+/* Hiệu ứng mở modal */
+#product-detail-modal.show .modal-content {
+    transform: scale(1); /* Tăng kích thước khi hiển thị */
+}
+
+/* Nút đóng */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s; /* Hiệu ứng chuyển tiếp cho màu sắc */
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #d9534f; /* Màu đỏ khi hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Tiêu đề sản phẩm */
+#product-detail-name {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: 600; /* Làm đậm tiêu đề */
+}
+
+/* Mô tả sản phẩm */
+#product-detail-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5; /* Khoảng cách giữa các dòng */
+}
+
+/* Nút "Thêm vào giỏ hàng" */
+#add-to-cart {
+    background-color: #5cb85c; /* Màu xanh lá cây */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Bo góc */
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s; /* Hiệu ứng chuyển tiếp cho màu nền */
+}
+
+#add-to-cart:hover {
+    background-color: #4cae4c; /* Màu xanh lá cây đậm khi hover */
+}
+
+/* Thông tin chi tiết sản phẩm */
+.product-details {
+    margin-top: 20px; /* Khoảng cách trên */
+}
+
+.product-details ul {
+    list-style-type: none; /* Bỏ dấu đầu dòng */
+    padding: 0; /* Bỏ padding */
+}
+
+.product-details li {
+    margin: 5px 0; /* Khoảng cách giữa các mục */
+    font-size: 14px; /* Kích thước chữ nhỏ hơn */
+    color: #333; /* Màu chữ */
+}
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2023/09/logo.svg" alt="Logo Cửa hàng" class="logo">
+            <h1>Cửa hàng Kính Thời Trang</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#products">Sản phẩm</a></li>
+                <li><a id="contact-link">Liên hệ</a></li>
+                <li><a id="cart-link">Giỏ hàng (<span id="cart-count">0</span>)</a></li> <!-- Giỏ hàng -->
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Modal Giỏ hàng -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-cart-btn">&times;</span>
+            <h2>Giỏ hàng của bạn</h2>
+            <div id="cart-items"></div>
+            <button id="checkout-btn">Thanh toán</button>
+        </div>
+    </div>
+    
+    
+
+    <!-- Slider Section -->
+    <section>
+        <div class="image-slider" id="image-slider">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2024/10/2.jpg" alt="Hình ảnh 1">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2024/09/Banner-Promotion-Website.jpg" alt="hình ảnh 2">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2024/09/459235793_915602287118159_3062028376118935965_n.png" alt="">
+        </div>
+    </section>
+
+    <!-- Service Section -->
+<section class="service-section">
+    <div class="service-container">
+        <div class="service-item">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2023/11/support.svg" alt="Vệ Sinh Kính Miễn Phí">
+            <h3>Vệ Sinh Kính Miễn Phí</h3>
+            <p>tại toàn bộ hệ thống mắt kính HMK</p>
+        </div>
+        <div class="service-item">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2023/10/cashback.svg" alt="Giao Hàng Nhanh Chóng">
+            <h3>Giao Hàng Nhanh Chóng</h3>
+            <p>chỉ từ 2 ngày trên toàn quốc</p>
+        </div>
+        <div class="service-item">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2023/10/renew.svg" alt="Thu Cũ Đổi Mới">
+            <h3>Thu Cũ Đổi Mới</h3>
+            <p>trợ giá lên đến 600.000đ</p>
+        </div>
+        <div class="service-item">
+            <img src="https://hmkeyewear.com/wp-content/uploads/2023/10/eye-measurement.svg" alt="Hỗ Trợ Đo Mắt">
+            <h3>Hỗ Trợ Đo Mắt</h3>
+            <p>tại toàn bộ hệ thống mắt kính HMK</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <!-- Category List -->
+        <div class="category-list">
+            <!-- Search bar -->
+            <div class="search-bar">
+                <input type="text" id="search-bar" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchProducts()">
+            </div>
+            <h2>Danh mục sản phẩm</h2>
+            <ul>
+                <li data-category="all">Tất cả sản phẩm</li>
+                <li data-category="fashion">Kính thời trang</li>
+                <li data-category="sunglasses">Kính râm</li>
+                <li data-category="prescription">Kính viễn thị</li>
+            </ul>
+        </div>
+
+        <!-- Product List -->
+        <div class="product-list">
+            <h2>Sản phẩm nổi bật</h2>
+            <div class="product-grid" id="product-grid">
+                <!-- Products will be injected dynamically here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal (Hidden by default) -->
+    <div id="product-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="product-detail-name">Kính Mát Thời Trang XYZ</h2>
+            <img src="https://hmkeyewear.com/wp-content/uploads/2024/04/31a6c69238814fecb586fbbc662febb6tplv-o3syd03w52-origin-jpeg-1024x1024-1.jpeg" alt="Kính Mát XYZ" style="width:100%; border-radius: 10px; margin-bottom: 15px;">
+            <p id="product-detail-description">
+                Kính mát thời trang XYZ mang đến sự kết hợp hoàn hảo giữa phong cách và sự bảo vệ cho đôi mắt bạn. Với thiết kế hiện đại và chất liệu cao cấp, sản phẩm này không chỉ giúp bạn trở nên nổi bật mà còn bảo vệ đôi mắt khỏi tác động của ánh nắng mặt trời.
+            </p>
+            <h3 style="color: #d9534f;">Giá: 500,000 VNĐ</h3>
+            <button id="add-to-cart">Thêm vào giỏ hàng</button>
+            <div class="product-details">
+                <h4>Thông tin chi tiết:</h4>
+                <ul>
+                    <li><strong>Chất liệu:</strong> Nhựa ABS</li>
+                    <li><strong>Màu sắc:</strong> Đen, Nâu</li>
+                    <li><strong>Khung kính:</strong> Chống tia UV 400</li>
+                    <li><strong>Kích thước:</strong> L (56-18-145)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Cửa hàng Kính Thời Trang. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Product data with categories
+        const products = [
+            { id: 1, name: "Kính Mẫu 1", price: "500,000 VND", img: "https://hmkeyewear.com/wp-content/uploads/2024/04/31a6c69238814fecb586fbbc662febb6tplv-o3syd03w52-origin-jpeg-1024x1024-1.jpeg", category: "fashion", description: "Kính thời trang phong cách trẻ trung." },
+            { id: 2, name: "Kính Mẫu 2", price: "700,000 VND", img: "https://hmkeyewear.com/wp-content/uploads/2024/04/1596750e706af5c2fd71c9046d0691bd.png", category: "sunglasses", description: "Kính râm bảo vệ mắt tối đa." },
+            { id: 3, name: "Kính Mẫu 3", price: "600,000 VND", img: "https://hmkeyewear.com/wp-content/uploads/2024/04/dbe9846591414b57b52f79544b035718tplv-o3syd03w52-origin-jpeg-1024x1024.jpeg", category: "prescription", description: "Kính viễn thị với thiết kế sang trọng." },
+            { id: 4, name: "Kính Mẫu 4", price: "800,000 VND", img: "https://hmkeyewear.com/wp-content/uploads/2024/04/817635485c3d49c6be51aec44e5b9fb6tplv-o3syd03w52-origin-jpeg.jpeg", category: "fashion", description: "Mẫu kính thời trang cho người yêu thích sự khác biệt." },
+            { id: 5, name: "Kính Mẫu 5", price: "550,000 VND", img: "https://hmkeyewear.com/wp-content/uploads/2024/06/KM1002.png", category: "sunglasses", description: "Kính râm chống tia UV." },
+            { id: 6, name: "Kính Mẫu 6", price: "750,000 VND", img: "https://hmkeyewear.com/wp-content/uploads/2024/01/PDP.jpg", category: "prescription", description: "Kính viễn thị với chất lượng cao cấp." },
+        ];
+
+
+        // Function to display products
+        function displayProducts(productList) {
+            const productGrid = document.getElementById('product-grid');
+            productGrid.innerHTML = '';
+            productList.forEach(product => {
+                const productItem = `
+                    <div class="product-item" data-id="${product.id}">
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>Giá: ${product.price}</p>
+                        <p>${product.description}</p> <!-- Thêm mô tả sản phẩm -->
+                    </div>
+                `;
+                productGrid.innerHTML += productItem;
+            });
+        
+
+    // Thêm sự kiện click vào mỗi sản phẩm
+    document.querySelectorAll('.product-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const productId = this.getAttribute('data-id');
+            const product = products.find(p => p.id == productId);
+            openProductDetailModal(product);
+        });
+    });
+}
+
+// Mở modal cho sản phẩm chi tiết
+function openProductDetailModal(product) {
+    const modal = document.getElementById('product-detail-modal');
+    document.getElementById('product-detail-name').innerText = product.name;
+    document.getElementById('product-detail-description').innerText = product.description;
+
+    // Hiển thị modal
+    modal.style.display = 'block';
+}
+
+// Đóng modal
+const productDetailModal = document.getElementById('product-detail-modal');
+const productCloseBtn = productDetailModal.querySelector('.close-btn');
+
+productCloseBtn.addEventListener('click', function() {
+    productDetailModal.style.display = 'none';
+});
+
+// Đóng modal khi nhấp ra ngoài
+window.addEventListener('click', function(event) {
+    if (event.target === productDetailModal) {
+        productDetailModal.style.display = 'none';
+    }
+});
+
+
+document.getElementById('add-to-cart').addEventListener('click', function() {
+    alert(`Đã thêm ${product.name} vào giỏ hàng!`);
+});
+
+
+
+        // Filter products by category
+        function filterByCategory(category) {
+            const filteredProducts = category === 'all' ? products : products.filter(product => product.category === category);
+            displayProducts(filteredProducts);
+        }
+
+        // Search products by name
+        function searchProducts() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(query));
+            displayProducts(filteredProducts);
+        }
+
+        // Event listeners for category filtering
+        document.querySelectorAll('.category-list li').forEach(categoryItem => {
+            categoryItem.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                filterByCategory(category);
+            });
+        });
+
+        // Initialize page with all products
+        $(document).ready(function() {
+            $('#image-slider').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                dots: true
+            });
+
+            // Display all products on page load
+            displayProducts(products);
+        });
+
+        // Mảng lưu trữ các sản phẩm trong giỏ hàng
+let cart = [];
+
+// Hàm thêm sản phẩm vào giỏ hàng
+function addToCart(product) {
+    const existingProduct = cart.find(item => item.id === product.id);
+    if (existingProduct) {
+        existingProduct.quantity += 1;
+    } else {
+        cart.push({ ...product, quantity: 1 });
+    }
+    updateCartCount();
+}
+
+// Cập nhật số lượng sản phẩm trong giỏ hàng hiển thị ở header
+function updateCartCount() {
+    const cartCount = document.getElementById('cart-count');
+    const totalItems = cart.reduce((sum, product) => sum + product.quantity, 0);
+    cartCount.textContent = totalItems;
+}
+
+// Hiển thị giỏ hàng trong modal
+function displayCart() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Giỏ hàng trống!</p>';
+    } else {
+        cart.forEach(product => {
+            const cartItem = `
+                <div>
+                    <p>${product.name} (Số lượng: ${product.quantity})</p>
+                    <p>Giá: ${product.price}</p>
+                </div>
+            `;
+            cartItems.innerHTML += cartItem;
+        });
+    }
+
+    document.getElementById('cart-modal').style.display = 'block';
+}
+
+// Thêm sự kiện cho nút "Thêm vào giỏ hàng"
+document.getElementById('add-to-cart').addEventListener('click', function() {
+    const selectedProduct = products.find(p => p.id == document.querySelector('.product-item').getAttribute('data-id'));
+    addToCart(selectedProduct);
+    alert(`Đã thêm ${selectedProduct.name} vào giỏ hàng!`);
+});
+
+// Đóng modal giỏ hàng
+const cartModal = document.getElementById('cart-modal');
+const closeCartBtn = document.querySelector('.close-cart-btn');
+
+closeCartBtn.addEventListener('click', function() {
+    cartModal.style.display = 'none';
+});
+
+window.addEventListener('click', function(event) {
+    if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+    }
+});
+
+// Mở modal giỏ hàng khi người dùng nhấp vào biểu tượng giỏ hàng
+document.getElementById('cart-link').addEventListener('click', function() {
+    displayCart();
+});
+
+// Initialize page with all products
+$(document).ready(function() {
+    $('#image-slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        dots: true
+    });
+
+    // Display all products on page load
+    displayProducts(products);
+});
+
+    </script>
+</body>
+</html>
